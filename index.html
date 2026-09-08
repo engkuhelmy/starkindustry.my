@@ -1,0 +1,587 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>STARK INDUSTRIES | Redefining Tomorrow</title>
+  <meta name="description" content="Official Stark Industries Portal. Clean Energy, Advanced Aerospace, Artificial Intelligence, and Nanotechnology engineered by Tony Stark." />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;600;800;900&family=Rajdhani:wght@400;500;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body class="theme-standard">
+  <!-- Scanline & Hologram Overlays -->
+  <div class="hologram-grid"></div>
+  <div class="scanlines"></div>
+  <canvas id="particles-canvas"></canvas>
+
+  <!-- Ambient Audio Indicator / Control -->
+  <header class="top-nav" id="top-nav">
+    <div class="brand-group">
+      <a href="#hero" class="brand-link" title="Stark Industries Global">
+        <img src="stark_logo.png" alt="Stark Industries Official Logo" class="official-stark-logo" />
+      </a>
+      <div class="brand-divider"></div>
+      <div class="brand-text">
+        <span class="brand-dept">DEFENSE & CLEAN ENERGY CONGLOMERATE</span>
+        <span class="brand-tag">DIV: GLOBAL OPERATIONS // SEC-LEVEL 9</span>
+      </div>
+    </div>
+
+    <nav class="nav-links">
+      <a href="#energy" class="nav-item">Clean Energy</a>
+      <a href="#divisions" class="nav-item">Divisions</a>
+      <a href="#vault" class="nav-item">Armor Vault</a>
+      <a href="#terminal" class="nav-item">J.A.R.V.I.S. CLI</a>
+      <a href="#foundation" class="nav-item">Foundation</a>
+    </nav>
+
+    <div class="nav-actions">
+      <button class="hud-btn sound-toggle" id="soundToggle" title="Audio HUD Effects">
+        <span class="hud-icon">🔊</span>
+        <span class="hud-label">AUDIO: ON</span>
+      </button>
+      <button class="hud-btn alert-btn" id="threatAlertBtn" title="Toggle Threat Protocol">
+        <span class="pulse-dot"></span>
+        <span class="btn-text">DEFENSE: SECURE</span>
+      </button>
+    </div>
+  </header>
+
+  <!-- Telemetry Ribbon -->
+  <div class="telemetry-bar">
+    <div class="telemetry-item">
+      <span class="t-label">GLOBAL ARC OUTPUT:</span>
+      <span class="t-value" id="arcOutputValue">4,892.4 GW</span>
+    </div>
+    <div class="telemetry-divider">/</div>
+    <div class="telemetry-item">
+      <span class="t-label">NYSE: $STARK</span>
+      <span class="t-value green">▲ $1,428.60 (+18.4%)</span>
+    </div>
+    <div class="telemetry-divider">/</div>
+    <div class="telemetry-item">
+      <span class="t-label">DEVICE POWER LINK:</span>
+      <span class="t-value" id="deviceBatteryVal">SYNCING...</span>
+    </div>
+    <div class="telemetry-divider">/</div>
+    <div class="telemetry-item">
+      <span class="t-label">SATELLITE VERONICA:</span>
+      <span class="t-value cyan">ORBIT STABLE (GEO-23)</span>
+    </div>
+  </div>
+
+  <main>
+    <!-- HERO SECTION: Arc Reactor Core -->
+    <section class="hero-section" id="hero">
+      <div class="hero-container">
+        <div class="hero-content">
+          <div class="hud-badge">
+            <span class="badge-glitch"></span>
+            PROVEN SOLUTIONS FOR A CHANGING WORLD
+          </div>
+          <h1 class="hero-title">
+            ENGINEERING THE <br/>
+            <span class="glow-text">FUTURE OF HUMANITY</span>
+          </h1>
+          <p class="hero-description">
+            From self-sustaining metropolitan Arc Reactors to planetary defense systems and sentient artificial heuristics. Stark Industries transforms impossible theoretical physics into tomorrow's reality.
+          </p>
+          <div class="hero-cta-group">
+            <a href="#vault" class="btn-primary">
+              <span class="btn-glow"></span>
+              <span>EXPLORE ARMOR VAULT</span>
+              <span class="arrow-icon">→</span>
+            </a>
+            <a href="#terminal" class="btn-secondary">
+              <span class="btn-border-corner"></span>
+              <span>ACCESS J.A.R.V.I.S. CORE</span>
+            </a>
+          </div>
+
+          <div class="core-metrics">
+            <div class="metric-card">
+              <div class="metric-num">100%</div>
+              <div class="metric-desc">Zero Carbon Arc Grid</div>
+            </div>
+            <div class="metric-card">
+              <div class="metric-num">Mach 8+</div>
+              <div class="metric-desc">Sub-Orbital Flight</div>
+            </div>
+            <div class="metric-card">
+              <div class="metric-num">85+</div>
+              <div class="metric-desc">Iron Legion Units</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Interactive 3D/Visual Arc Reactor -->
+        <div class="hero-reactor-wrapper">
+          <div class="reactor-hud-ring ring-outer"></div>
+          <div class="reactor-hud-ring ring-middle"></div>
+          <div class="reactor-hud-ring ring-ticks"></div>
+          
+          <div class="arc-reactor" id="arcReactor" title="Click to discharge Arc Energy">
+            <div class="arc-housing">
+              <div class="coils-container">
+                <div class="coil c1"></div>
+                <div class="coil c2"></div>
+                <div class="coil c3"></div>
+                <div class="coil c4"></div>
+                <div class="coil c5"></div>
+                <div class="coil c6"></div>
+                <div class="coil c7"></div>
+                <div class="coil c8"></div>
+                <div class="coil c9"></div>
+                <div class="coil c10"></div>
+              </div>
+              <div class="arc-inner-ring">
+                <div class="arc-core-pulse"></div>
+                <div class="arc-core-light"></div>
+              </div>
+            </div>
+            <div class="reactor-status-tag">
+              <span class="reactor-tag-label">BADASSIUM ELEMENT CORE</span>
+              <span class="reactor-tag-val">STABLE // 3.0 GJ/s</span>
+            </div>
+          </div>
+          <div class="reactor-hint">TAP REACTOR TO DISCHARGE ENERGY</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- CLEAN ENERGY & ARC SECTION -->
+    <section class="section energy-section" id="energy">
+      <div class="section-header">
+        <div class="section-subtitle">// SECTOR 01: POWER REVOLUTION</div>
+        <h2 class="section-title">THE CLEAN ENERGY PARADIGM</h2>
+        <p class="section-desc">Replacing fossil fuels and fission with proprietary palladium-synthesized and new-element Arc fusion technology.</p>
+      </div>
+
+      <div class="energy-grid">
+        <div class="energy-card">
+          <div class="card-corner top-left"></div>
+          <div class="card-corner bottom-right"></div>
+          <div class="card-badge">MUNICIPAL DEPLOYMENT</div>
+          <h3>Metropolitan Arc Reactors</h3>
+          <p>
+            Operating since Stark Tower New York, powering entire urban infrastructures independently off the legacy grid with infinite zero-emission clean energy.
+          </p>
+          <div class="tech-spec-list">
+            <div class="spec-row">
+              <span>Fuel Source</span>
+              <strong>Synthesized Heavy Element</strong>
+            </div>
+            <div class="spec-row">
+              <span>Thermal Efficiency</span>
+              <strong>99.982%</strong>
+            </div>
+            <div class="spec-row">
+              <span>Fail-Safe</span>
+              <strong>Passive Magnetic Containment</strong>
+            </div>
+          </div>
+        </div>
+
+        <div class="energy-card highlighted">
+          <div class="card-corner top-left"></div>
+          <div class="card-corner bottom-right"></div>
+          <div class="card-badge pulse">MICRO-ARC SYSTEM</div>
+          <h3>Wearable Bio-Arc Synthesizers</h3>
+          <p>
+            Miniaturized chest-unit architecture generating over 3 gigajoules per second. Capable of supporting cardiac stabilization or multi-system repulsor arrays.
+          </p>
+          <div class="tech-spec-list">
+            <div class="spec-row">
+              <span>Output</span>
+              <strong>3.0 GJ / sec</strong>
+            </div>
+            <div class="spec-row">
+              <span>Dimensions</span>
+              <strong>76mm Diameter</strong>
+            </div>
+            <div class="spec-row">
+              <span>Life Expectancy</span>
+              <strong>Decades per Core Cycle</strong>
+            </div>
+          </div>
+        </div>
+
+        <div class="energy-card">
+          <div class="card-corner top-left"></div>
+          <div class="card-corner bottom-right"></div>
+          <div class="card-badge">DEEP SPACE & OFF-GRID</div>
+          <h3>Veronica & Deep Space Relays</h3>
+          <p>
+            Orbital tracking stations and independent satellite grids drawing continuous energy without atmospheric depletion, sustaining rapid planetary deployment.
+          </p>
+          <div class="tech-spec-list">
+            <div class="spec-row">
+              <span>Deployment</span>
+              <strong>Low-Earth Orbit (Veronica)</strong>
+            </div>
+            <div class="spec-row">
+              <span>Response Latency</span>
+              <strong>0.008 ms</strong>
+            </div>
+            <div class="spec-row">
+              <span>Autonomy</span>
+              <strong>Class IV J.A.R.V.I.S. Core</strong>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- CORE DIVISIONS -->
+    <section class="section divisions-section" id="divisions">
+      <div class="section-header">
+        <div class="section-subtitle">// SECTOR 02: STRATEGIC DIVISIONS</div>
+        <h2 class="section-title">GLOBAL INNOVATION PILLARS</h2>
+      </div>
+
+      <div class="divisions-slider">
+        <div class="division-card" data-div="defense">
+          <div class="div-icon">🚀</div>
+          <div class="div-num">01</div>
+          <h3>Aerospace & Repulsor Flight</h3>
+          <p>Advanced vectored thrust dynamics, high-altitude stabilization, and sound-barrier nullification used across our civilian and strategic transport.</p>
+          <ul class="div-bullets">
+            <li>Hypersonic Propulsion</li>
+            <li>Inertial Dampeners</li>
+            <li>Adaptive Aerodynamics</li>
+          </ul>
+        </div>
+
+        <div class="division-card active" data-div="ai">
+          <div class="div-icon">🧠</div>
+          <div class="div-num">02</div>
+          <h3>J.A.R.V.I.S. & Artificial Heuristics</h3>
+          <p>Natural neural dialogue, predictive combat heuristics, and multi-domain infrastructure management capable of managing entire global networks.</p>
+          <ul class="div-bullets">
+            <li>Sub-second Quantum Computation</li>
+            <li>Multi-spectral Hologram Output</li>
+            <li>Empathetic Voice Synthesis</li>
+          </ul>
+        </div>
+
+        <div class="division-card" data-div="nano">
+          <div class="div-icon">🔬</div>
+          <div class="div-num">03</div>
+          <h3>Nanotechnology & Material Science</h3>
+          <p>Gold-titanium micro-alloys and self-assembling programmable matter that form instantaneous structures, shields, and bio-scaffolds.</p>
+          <ul class="div-bullets">
+            <li>Bleeding-Edge Nanoparticle Synthesis</li>
+            <li>Instantaneous Armor Solidification</li>
+            <li>Kinetic Dispersion Matrix</li>
+          </ul>
+        </div>
+
+        <div class="division-card" data-div="bio">
+          <div class="div-icon">⚡</div>
+          <div class="div-num">04</div>
+          <h3>Stark Medical & Prosthetics</h3>
+          <p>Empowering veterans and civilians through advanced neural-linked bionic limbs, neuro-stimulators, and accelerated cellular repair systems.</p>
+          <ul class="div-bullets">
+            <li>Synaptic Nerve Interfacing</li>
+            <li>Zero-latency Reflex Augmentation</li>
+            <li>Cellular Regeneration Matrices</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- THE ARMOR VAULT (INTERACTIVE SUIT BLUEPRINT EXPLORER) -->
+    <section class="section vault-section" id="vault">
+      <div class="section-header">
+        <div class="section-subtitle">// RESTRICTED FILE // EYES ONLY</div>
+        <h2 class="section-title">THE ARMOR VAULT</h2>
+        <p class="section-desc">Interactive schematics of Anthony Stark's landmark exosuit iterations.</p>
+      </div>
+
+      <div class="vault-container">
+        <!-- Suit Switcher Tabs -->
+        <div class="suit-selector" id="suitSelector">
+          <button class="suit-btn active" data-suit="mark3">MARK III (CLASSIC SHOWROOM)</button>
+          <button class="suit-btn" data-suit="mark5">MARK I (CAVE PROTOTYPE)</button>
+          <button class="suit-btn" data-suit="mark44">MARK XLIV (HULKBUSTER TITAN)</button>
+          <button class="suit-btn" data-suit="mark50">MARK XLII (AUTONOMOUS PREHENSILE)</button>
+          <button class="suit-btn" data-suit="mark85">MARK VII (BATTLE OF NEW YORK)</button>
+        </div>
+
+        <!-- Blueprint Viewer -->
+        <div class="blueprint-display" id="blueprintDisplay">
+          <div class="blueprint-grid-lines"></div>
+          
+          <div class="blueprint-schematic">
+            <div class="vault-view-toggle">
+              <button class="view-mode-btn active" id="viewModePhoto">REAL ARMOR PHOTO</button>
+              <button class="view-mode-btn" id="viewModeSchematic">HUD BLUEPRINT</button>
+            </div>
+
+            <div class="suit-visual-frame" id="suitVisualFrame">
+              <!-- Real Photo of Armor Display -->
+              <div class="suit-photo-wrapper" id="suitPhotoWrapper">
+                <img src="suit_mark3_clean.jpg" alt="Iron Man Armor Suit" id="suitPhotoImage" class="suit-photo-img" />
+                <div class="photo-glow-overlay"></div>
+              </div>
+
+              <!-- Dynamic SVG schematic drawing (Hidden when in photo mode) -->
+              <div class="suit-svg-wrapper" id="suitSvgWrapper" style="display: none;">
+                <!-- SVG dynamically populated via JS -->
+              </div>
+              
+              <!-- Interactive Hotspots -->
+              <div class="hotspot hs-helmet" data-info="Neural J.A.R.V.I.S. HUD with 360-degree panoramic sensor synthesis and tactical targeting lock.">
+                <span class="hotspot-pulse"></span>
+                <span class="hotspot-tag">HELMET HUD</span>
+              </div>
+              <div class="hotspot hs-arc" data-info="Central Unibeam powered by direct multi-arc fusion. Can project high-intensity energy blasts up to 10,000°C.">
+                <span class="hotspot-pulse"></span>
+                <span class="hotspot-tag">UNIBEAM CORE</span>
+              </div>
+              <div class="hotspot hs-repulsor" data-info="Dual hand-mounted Repulsor Nodes providing both high-G flight stabilization and directed concussive force.">
+                <span class="hotspot-pulse"></span>
+                <span class="hotspot-tag">REPULSOR ARRAY</span>
+              </div>
+              <div class="hotspot hs-thrusters" data-info="Vector thrust boots engineered for rapid supersonic atmospheric exit and sub-orbital dogfighting.">
+                <span class="hotspot-pulse"></span>
+                <span class="hotspot-tag">THRUST VECTORING</span>
+              </div>
+            </div>
+
+            <!-- Hotspot Details Floating Tooltip -->
+            <div class="hotspot-detail-card" id="hotspotDetail">
+              <div class="detail-label">SYSTEM TELEMETRY:</div>
+              <div class="detail-text" id="hotspotDetailText">Hover or tap any blue telemetry marker to inspect subsystem specifications.</div>
+            </div>
+          </div>
+
+          <!-- Suit Specs Side Panel -->
+          <div class="blueprint-specs-panel">
+            <div class="panel-header">
+              <div class="suit-code" id="suitCode">MK-44 // CODE: VERONICA</div>
+              <h3 class="suit-name" id="suitName">MARK XLIV "HULKBUSTER"</h3>
+            </div>
+            
+            <p class="suit-bio" id="suitBio">
+              Heavy-duty planetary pacification modular armor deployed via orbital satellite Veronica. Designed with hydraulically assisted vibranium-enhanced joints to withstand direct blows from gamma-irradiated titans.
+            </p>
+
+            <div class="spec-bars">
+              <div class="spec-bar-group">
+                <div class="bar-info">
+                  <span>ARMOR INTEGRITY (DURABILITY)</span>
+                  <span id="statDurability">98%</span>
+                </div>
+                <div class="progress-track"><div class="progress-fill" id="fillDurability" style="width: 98%"></div></div>
+              </div>
+
+              <div class="spec-bar-group">
+                <div class="bar-info">
+                  <span>FLIGHT VELOCITY / MOBILITY</span>
+                  <span id="statMobility">74%</span>
+                </div>
+                <div class="progress-track"><div class="progress-fill" id="fillMobility" style="width: 74%"></div></div>
+              </div>
+
+              <div class="spec-bar-group">
+                <div class="bar-info">
+                  <span>UNIBEAM / ENERGY DISCHARGE</span>
+                  <span id="statEnergy">95%</span>
+                </div>
+                <div class="progress-track"><div class="progress-fill" id="fillEnergy" style="width: 95%"></div></div>
+              </div>
+
+              <div class="spec-bar-group">
+                <div class="bar-info">
+                  <span>NANOTECH / ADAPTATION</span>
+                  <span id="statNano">40%</span>
+                </div>
+                <div class="progress-track"><div class="progress-fill" id="fillNano" style="width: 40%"></div></div>
+              </div>
+            </div>
+
+            <div class="suit-stats-table">
+              <div class="stat-cell">
+                <span class="cell-k">CORE:</span>
+                <span class="cell-v" id="specCore">11 Mini-Arcs</span>
+              </div>
+              <div class="stat-cell">
+                <span class="cell-k">ALLOY:</span>
+                <span class="cell-v" id="specAlloy">Gold-Titanium Plate</span>
+              </div>
+              <div class="stat-cell">
+                <span class="cell-k">A.I. SYSTEM:</span>
+                <span class="cell-v" id="specAi">Veronica Heuristics</span>
+              </div>
+              <div class="stat-cell">
+                <span class="cell-k">FIRST DEPLOYED:</span>
+                <span class="cell-v" id="specDeploy">Johannesburg (2015)</span>
+              </div>
+            </div>
+
+            <button class="hud-action-btn" id="simulateArmBtn">
+              <span>INITIALIZE SUIT SIMULATION</span>
+            </button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- INTERACTIVE J.A.R.V.I.S. TERMINAL -->
+    <section class="section terminal-section" id="terminal">
+      <div class="section-header">
+        <div class="section-subtitle">// J.A.R.V.I.S. KERNEL v8.4.1</div>
+        <h2 class="section-title">COMMAND LINE CLEARANCE INTERFACE</h2>
+        <p class="section-desc">Query Stark Industries servers directly. Try typing <code class="cmd-pill">help</code>, <code class="cmd-pill">suits</code>, <code class="cmd-pill">jarvis</code>, or <code class="cmd-pill">iamironman</code>.</p>
+      </div>
+
+      <div class="terminal-window">
+        <div class="term-titlebar">
+          <div class="term-dots">
+            <span class="dot red"></span>
+            <span class="dot yellow"></span>
+            <span class="dot green"></span>
+          </div>
+          <div class="term-title">SECURE SHELL: jarvis@starkindustries.corp</div>
+          <div class="term-badges-group">
+            <span class="term-badge voice-active" id="voiceStatusBadge">🎙️ J.A.R.V.I.S. VOICE: ACTIVE</span>
+            <span class="term-badge">ENCRYPTED // QUANTUM-256</span>
+          </div>
+        </div>
+
+        <div class="term-body" id="terminalBody">
+          <div class="term-line output">
+            J.A.R.V.I.S. v8.4.1 Online. All primary telemetry links nominal.
+          </div>
+          <div class="term-line output info">
+            Type <span class="cmd-hint">help</span> to view all diagnostic commands, or query system status.
+          </div>
+        </div>
+
+        <div class="term-input-row">
+          <span class="prompt-user">tony@stark:~$</span>
+          <input type="text" id="termInput" class="term-input" placeholder="Type a command (e.g. 'status', 'help', 'suits')..." autocomplete="off" spellcheck="false" />
+          <button id="termSubmitBtn" class="term-submit-btn">EXECUTE</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- LEADERSHIP & SEPTEMBER FOUNDATION -->
+    <section class="section foundation-section" id="foundation">
+      <div class="section-header">
+        <div class="section-subtitle">// PHILANTHROPY & LEADERSHIP</div>
+        <h2 class="section-title">THE SEPTEMBER FOUNDATION</h2>
+        <p class="section-desc">"No amount of money ever bought a second of time. But it can fund the minds that will conquer tomorrow."</p>
+      </div>
+
+      <div class="foundation-cards">
+        <div class="leader-card">
+          <div class="leader-photo-sim tony">
+            <div class="holo-scan-badge">CHIEF INNOVATOR</div>
+          </div>
+          <div class="leader-info">
+            <h3>Anthony Edward Stark</h3>
+            <span class="leader-role">Founder, Chief Technical Architect</span>
+            <p>Visionary engineer, creator of the clean Arc Reactor, and architect of modern planetary defense systems.</p>
+            <blockquote class="stark-quote">"If we can't protect the Earth, you can be damn well sure we'll avenge it."</blockquote>
+          </div>
+        </div>
+
+        <div class="leader-card">
+          <div class="leader-photo-sim pepper">
+            <div class="holo-scan-badge">CHIEF EXECUTIVE OFFICER</div>
+          </div>
+          <div class="leader-info">
+            <h3>Virginia "Pepper" Potts</h3>
+            <span class="leader-role">Chief Executive Officer</span>
+            <p>Directing global corporate strategy, transitioning Stark Industries into the world's most valuable zero-emission enterprise.</p>
+            <blockquote class="stark-quote">"We are not just a company. We are custodians of the technology that will preserve our world."</blockquote>
+          </div>
+        </div>
+      </div>
+
+      <!-- Grant Application Teaser -->
+      <div class="grant-box">
+        <div class="grant-content">
+          <div class="grant-badge">MIT & GLOBAL STUDENT INITIATIVE</div>
+          <h3>September Foundation Innovation Grants</h3>
+          <p>Got an audacious prototype? Every MIT student project and independent innovation received unconditional Stark funding. Submit your research telemetry for evaluation by J.A.R.V.I.S.</p>
+        </div>
+        <div class="grant-action">
+          <button class="btn-primary" id="applyGrantBtn">
+            <span>SUBMIT TELEMETRY / GRANT</span>
+          </button>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- FOOTER -->
+  <footer class="stark-footer">
+    <div class="footer-top">
+      <div class="footer-col brand-col">
+        <div class="footer-brand">
+          <img src="stark_logo.png" alt="Stark Industries Official Logo" class="official-stark-logo footer-logo" />
+        </div>
+        <p>Changing the World for a Better Tomorrow. A division of Stark Global Enterprises.</p>
+        <div class="clearance-tag">SECURITY CLEARANCE: TONY STARK & PEPPER POTTS ONLY</div>
+      </div>
+      <div class="footer-col">
+        <h4>FACILITIES</h4>
+        <ul>
+          <li>Stark Tower, New York City</li>
+          <li>Point Dume Compound, Malibu CA</li>
+          <li>Avengers Upstate Complex, NY</li>
+          <li>Stark Eco-Plant, Bern Switzerland</li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>SUBSIDIARIES</h4>
+        <ul>
+          <li>Stark Clean Energy Solutions</li>
+          <li>Stark Aerospace Dynamics</li>
+          <li>Stark Nano-Fabrication Labs</li>
+          <li>September Foundation Grants</li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>COMMUNICATION</h4>
+        <ul>
+          <li>J.A.R.V.I.S. Heuristic Network</li>
+          <li>F.R.I.D.A.Y. Strategic Uplink</li>
+          <li>Damage Control Oversight</li>
+          <li>Security Desk: ext. 421-STARK</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="footer-bottom">
+      <div class="copy-text">© STARK INDUSTRIES CORP. ALL RIGHTS RESERVED. POWERED BY ARC REACTOR TECH.</div>
+      <div class="mcu-tribute">Inspired by Marvel's Iron Man & Tony Stark • Cinematic Experience</div>
+    </div>
+  </footer>
+
+  <!-- Modal for Grant or Protocol Notifications -->
+  <div class="hud-modal-overlay" id="hudModal">
+    <div class="hud-modal">
+      <div class="card-corner top-left"></div>
+      <div class="card-corner bottom-right"></div>
+      <div class="modal-header">
+        <h3 id="modalTitle">SECURITY PROTOCOL</h3>
+        <button class="modal-close-btn" id="modalCloseBtn">✕</button>
+      </div>
+      <div class="modal-body" id="modalBody">
+        Processing request...
+      </div>
+      <div class="modal-footer">
+        <button class="btn-secondary" id="modalActionBtn">ACKNOWLEDGE</button>
+      </div>
+    </div>
+  </div>
+
+  <script src="app.js"></script>
+</body>
+</html>
