@@ -755,8 +755,36 @@ document.addEventListener('DOMContentLoaded', () => {
     threatBtn.addEventListener('click', toggleThreatMode);
   }
 
+  // --- MOBILE NAV DRAWER TOGGLE ---
+  const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+  const mobileNavDrawer = document.getElementById('mobileNavDrawer');
+  if (mobileMenuBtn && mobileNavDrawer) {
+    mobileMenuBtn.addEventListener('click', () => {
+      const isOpen = mobileNavDrawer.classList.toggle('open');
+      mobileMenuBtn.querySelector('.hamburger-icon').textContent = isOpen ? '✕' : '☰';
+      document.body.style.overflow = isOpen ? 'hidden' : '';
+    });
+    // Close drawer on outside click
+    mobileNavDrawer.addEventListener('click', (e) => {
+      if (e.target === mobileNavDrawer) {
+        mobileNavDrawer.classList.remove('open');
+        mobileMenuBtn.querySelector('.hamburger-icon').textContent = '☰';
+        document.body.style.overflow = '';
+      }
+    });
+    // Close on escape key
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape' && mobileNavDrawer.classList.contains('open')) {
+        mobileNavDrawer.classList.remove('open');
+        mobileMenuBtn.querySelector('.hamburger-icon').textContent = '☰';
+        document.body.style.overflow = '';
+      }
+    });
+  }
+
   // Welcome beep on first interaction
   window.addEventListener('click', () => {
     initAudio();
   }, { once: true });
 });
+

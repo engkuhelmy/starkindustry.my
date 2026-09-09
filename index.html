@@ -41,8 +41,22 @@
         <span class="pulse-dot"></span>
         <span class="btn-text">DEFENSE: SECURE</span>
       </button>
+      <button class="hud-btn mobile-menu-btn" id="mobileMenuBtn" title="Navigation Menu" aria-label="Toggle navigation">
+        <span class="hamburger-icon">☰</span>
+      </button>
     </div>
   </header>
+
+  <!-- Mobile Nav Drawer -->
+  <div class="mobile-nav-drawer" id="mobileNavDrawer">
+    <div class="mobile-nav-inner">
+      <a href="#energy" class="mobile-nav-item" onclick="document.getElementById('mobileNavDrawer').classList.remove('open')">Clean Energy</a>
+      <a href="#divisions" class="mobile-nav-item" onclick="document.getElementById('mobileNavDrawer').classList.remove('open')">Divisions</a>
+      <a href="#vault" class="mobile-nav-item" onclick="document.getElementById('mobileNavDrawer').classList.remove('open')">Armor Vault</a>
+      <a href="#terminal" class="mobile-nav-item" onclick="document.getElementById('mobileNavDrawer').classList.remove('open')">J.A.R.V.I.S. CLI</a>
+      <a href="#foundation" class="mobile-nav-item" onclick="document.getElementById('mobileNavDrawer').classList.remove('open')">Foundation</a>
+    </div>
+  </div>
 
   <!-- Telemetry Ribbon -->
   <div class="telemetry-bar">
